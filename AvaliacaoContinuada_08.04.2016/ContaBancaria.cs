@@ -10,25 +10,29 @@ namespace Avaliacao08
     {
         private int numero;
         private Agencia agencia;
-        private Cliente cliente;        
+        //private Cliente cliente;
+        private List<Cliente> Clientes = new List<Cliente>();
         private Boolean especial = false;
-        private float limite = 0, saldo;
+        private float limite = 0, saldo;   
 
         public ContaBancaria(Banco banco, Agencia agencia, int numero, Cliente cliente, bool especial, float limite)
         {          
             this.agencia = agencia;
             this.numero = numero;
-            this.cliente = cliente;
+            Clientes.Add(cliente);
             this.especial = especial;
             this.limite = limite;
         }
+                
 
         public ContaBancaria(Banco banco, Agencia agencia, int numero, Cliente cliente)
         {            
             this.agencia = agencia;
             this.numero = numero;
-            this.cliente = cliente;
+            Clientes.Add(cliente);
         }
+
+
         
         public int Numero
         {
@@ -42,11 +46,7 @@ namespace Avaliacao08
             set { agencia = value; }
         }
 
-        public Cliente Cliente
-        {
-            get { return cliente; }
-            set { cliente = value; }
-        }
+       
 
         public bool Especial
         {
@@ -66,7 +66,6 @@ namespace Avaliacao08
             //set { saldo = value; }
         }
 
-
         public void ExibirSaldo()
         {
             Agencia.Banco.Exibir();
@@ -74,8 +73,12 @@ namespace Avaliacao08
             
             /* não está na lista, coloquei por conta */
             Console.WriteLine("Conta Corrente:\t\t {0}", this.Numero);
+            
+            foreach(var item in Clientes )
+            {
+                Console.WriteLine("Nome {0}  - CPF {1}", item.Nome, item.Cpf);
+            }
 
-            Cliente.Exibir();
             Console.WriteLine("Saldo Atual: \t\t {0:C}", this.Saldo);
             if (this.Especial)
             {
