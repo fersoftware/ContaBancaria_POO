@@ -25,14 +25,17 @@ namespace Avaliacao08
         }
                 
 
-        public ContaBancaria(Banco banco, Agencia agencia, int numero, Cliente cliente)
+        public ContaBancaria(Banco banco, Agencia agencia, int numero)
         {            
             this.agencia = agencia;
-            this.numero = numero;
-            Clientes.Add(cliente);
+            this.numero = numero;            
         }
 
-
+        public void  addCliente(Cliente cliente)
+        {
+            Clientes.Add(cliente);
+        }
+        
         
         public int Numero
         {
